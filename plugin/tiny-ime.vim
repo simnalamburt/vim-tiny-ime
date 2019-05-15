@@ -9,7 +9,7 @@ let tiny_ime_dir = expand('<sfile>:p:h:h')
 if findfile('set-ime', tiny_ime_dir) == ""
   echo 'vim-tiny-ime: You have to run the following command to complete install of vim-tiny-ime.'
   echo ' '
-  echo '    bash '.tiny_ime_dir.'/build'
+  echo '    $ '.tiny_ime_dir.'/build'
   echo ' '
   finish
 endif

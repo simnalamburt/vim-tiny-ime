@@ -13,5 +13,5 @@ if xcode-select -p 1>/dev/null 2>/dev/null; then
   swiftc -O set-ime.swift
 else
   # Fallback to python2 version
-  cp set-ime.py set-ime
+  cp -f set-ime.py set-ime
 fi
