@@ -4,30 +4,30 @@
 // Main logic
 //
 static int change_ime() {
-  // Lookup all available IMEs
-  NSArray *inputArray = (NSArray*)TISCreateInputSourceList(NULL, false);
-  NSMutableDictionary *availableLanguages = [NSMutableDictionary dictionaryWithCapacity:[inputArray count]];
-  for (NSUInteger i = 0; i < [inputArray count]; ++i) {
-    NSString *name = TISGetInputSourceProperty(
-        (TISInputSourceRef)[inputArray objectAtIndex:i],
-        kTISPropertyLocalizedName);
-
-    [availableLanguages setObject:[inputArray objectAtIndex:i] forKey:name];
-  }
-  [inputArray release];
-
   // Read ARGV[1]
-  NSString *chosenInput = [[[NSProcessInfo processInfo] arguments] objectAtIndex:1];
+  NSString *desired_ime_name = [[[NSProcessInfo processInfo] arguments] objectAtIndex:1];
+
+  // Lookup all available IMEs and fined desired IME
+  TISInputSourceRef chosen_ime = nil;
+  NSArray *ime_list = (NSArray*)TISCreateInputSourceList(NULL, false);
+  for (NSUInteger i = 0; i < [ime_list count]; ++i) {
+    TISInputSourceRef ime = (TISInputSourceRef)[ime_list objectAtIndex:i];
+    NSString *ime_name = TISGetInputSourceProperty(ime, kTISPropertyLocalizedName);
+    if ([desired_ime_name isEqualToString:ime_name]) {
+      chosen_ime = ime;
+      break;
+    }
+  }
+  [ime_list release];
 
   // Find desired IME
-  TISInputSourceRef chosen = (TISInputSourceRef)[availableLanguages objectForKey:chosenInput];
-  if (!chosen) {
-    fprintf(stderr, "Input source '%s' is not available\n", [chosenInput UTF8String]);
+  if (!chosen_ime) {
+    fprintf(stderr, "Input source '%s' is not available\n", [desired_ime_name UTF8String]);
     return 1;
   }
 
   // Change IME
-  const OSStatus err = TISSelectInputSource(chosen);
+  const OSStatus err = TISSelectInputSource(chosen_ime);
   if (err) {
     fprintf(stderr, "Could not change input language (OSStatus = %i)\n", (int)err);
     return 1;
