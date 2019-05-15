@@ -2,6 +2,10 @@ vim-tiny-ime
 ========
 Tiny automatic IME switcher for macOS.
 
+```vim
+Plug 'simnalamburt/vim-tiny-ime', { 'do' : './build' }
+```
+
 -   Switch English IME whenever vim switchs to normal mode.
 -   When vim switches to insert mode:
     -   If the character before cursor is a Chinese character, switch to Chinese

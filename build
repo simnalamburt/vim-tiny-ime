@@ -1,0 +1,7 @@
+#!/bin/bash
+set -euo pipefail; IFS=$'\n\t'
+
+## TODO: swiftc가 설치되어있는지 체크하고 없을경우 아래 문장으로 fallback 해야함
+# cp set-ime.py set-ime
+
+swiftc -O set-ime.swift
