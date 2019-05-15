@@ -1,6 +1,12 @@
 #!/bin/bash
 set -euo pipefail; IFS=$'\n\t'
 
+# Set working directory
+cd "${0%/*}"
+
+# Remove previous build result
+rm -f set-ime
+
 # Check if swiftc is available
 if xcode-select -p 1>/dev/null 2>/dev/null; then
   # Compile
