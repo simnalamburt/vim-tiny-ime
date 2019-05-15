@@ -4,6 +4,7 @@ Tiny automatic IME switcher for macOS. Switch English IME whenever vim switchs
 to normal mode.
 
 ```vim
+" ~/.vimrc
 Plug 'simnalamburt/vim-tiny-ime', { 'do' : './build' }
 ```
 
