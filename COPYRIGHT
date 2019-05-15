@@ -39,7 +39,7 @@ notices and license terms:
     You should have received a copy of the GNU General Public License
     along with Foobar.  If not, see <http://www.gnu.org/licenses/>.
 
-* 'input-method.m' is derived from the program 'changeInput' written by
+* 'set-ime.m' is derived from the program 'changeInput' written by
   Stefan Klieme, licensed under GPLv3 or any later version.
 
     changeInput

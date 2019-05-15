@@ -22,9 +22,9 @@ endif
 if !exists('g:tiny_ime_binary_dir')
     let g:tiny_ime_binary_dir = expand('<sfile>:p:h:h')
 endif
-let s:tiny_ime_binary = g:tiny_ime_binary_dir . "/input-method"
+let s:tiny_ime_binary = g:tiny_ime_binary_dir . "/set-ime"
 
-if findfile('input-method', g:tiny_ime_binary_dir) == ""
+if findfile('set-ime', g:tiny_ime_binary_dir) == ""
     echo 'vim-tiny_ime: ' . s:tiny_ime_binary . ' is not found'
     echo 'vim-tiny_ime: Forgotten to run make?'
     finish
