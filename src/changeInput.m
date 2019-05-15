@@ -5,8 +5,6 @@
 // created:  2009-11-05
 // Usage:    changeInput                        prints current input language
 //           changeInput    name                changes input language to name
-//           changeInput    toggle name1 name2  toggles input language between
-//                                              name1 and name2
 
 // This program is free software: you can redistribute it and/or modify
 // it under the terms of the GNU General Public License as published by
@@ -33,11 +31,11 @@ int main(int argc, const char* __attribute__((unused)) argv[]) {
   if (argc == 1) {
     printf("%s\n", [currentName UTF8String]);
   } else {
-    NSString *chosenInput, *language1, *language2;
+    NSString *chosenInput;
     NSArray* inputArray = (NSArray*)TISCreateInputSourceList(NULL, false);
     NSMutableDictionary* availableLanguages = [NSMutableDictionary dictionaryWithCapacity:[inputArray count]];
     NSUInteger i;
-    TISInputSourceRef chosen, languageRef1, languageRef2;
+    TISInputSourceRef chosen;
     for (i = 0; i < [inputArray count]; ++i) {
       const void *name = TISGetInputSourceProperty(
           (TISInputSourceRef)[inputArray objectAtIndex:i],
@@ -47,22 +45,8 @@ int main(int argc, const char* __attribute__((unused)) argv[]) {
     }
     [inputArray release];
 
-    if (argc == 4 && [[args objectAtIndex:1] isEqualTo:@"toggle"]) {
-      language1 = [args objectAtIndex:2];
-      language2 = [args objectAtIndex:3];
-      languageRef1 = (TISInputSourceRef)[availableLanguages objectForKey:language1];
-      languageRef2 = (TISInputSourceRef)[availableLanguages objectForKey:language2];
-      if (languageRef1 != nil && languageRef2 != nil) {
-        chosenInput = ([language1 isEqualTo:currentName]) ? language2 : language1;
-        chosen = (TISInputSourceRef)[availableLanguages objectForKey:chosenInput];
-      } else {
-        chosenInput = (languageRef1 == nil) ? language1 : language2;
-        chosen = nil;
-      }
-    } else {
-      chosenInput = [args objectAtIndex:1];
-      chosen = (TISInputSourceRef)[availableLanguages objectForKey:chosenInput];
-    }
+    chosenInput = [args objectAtIndex:1];
+    chosen = (TISInputSourceRef)[availableLanguages objectForKey:chosenInput];
     if (chosen) {
       OSStatus err = TISSelectInputSource(chosen);
       if (err) {
