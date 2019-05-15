@@ -1,0 +1,62 @@
+Short version for non-laywers:
+  The vim-tiny-ime project is licensed under GPLv3 terms or any later version.
+
+Longer version:
+  vim-tiny-ime
+  Copyright (C) 2019  Hyeon Kim  https://hyeon.me
+
+  This program is free software: you can redistribute it and/or modify
+  it under the terms of the GNU General Public License as published by
+  the Free Software Foundation, either version 3 of the License, or
+  (at your option) any later version.
+
+  This program is distributed in the hope that it will be useful,
+  but WITHOUT ANY WARRANTY; without even the implied warranty of
+  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+  GNU General Public License for more details.
+
+  You should have received a copy of the GNU General Public License
+  along with this program.  If not, see <https://www.gnu.org/licenses/>.
+
+
+The vim-tiny-ime project includes source codes written by third parties. The
+following third party source codes are included, and carry their own copyright
+notices and license terms:
+
+* This project is forked from 'vim-osx-ime' <https://github.com/hongqn/vim-osx-ime>
+  written by Qiangning Hong, licensed under GPLv3 or any later version.
+
+    vim-osx-ime is free software: you can redistribute it and/or modify
+    it under the terms of the GNU General Public License as published by
+    the Free Software Foundation, either version 3 of the License, or
+    (at your option) any later version.
+
+    vim-osx-ime is distributed in the hope that it will be useful,
+    but WITHOUT ANY WARRANTY; without even the implied warranty of
+    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+    GNU General Public License for more details.
+
+    You should have received a copy of the GNU General Public License
+    along with Foobar.  If not, see <http://www.gnu.org/licenses/>.
+
+* 'input-method.m' is derived from the program 'changeInput' written by
+  Stefan Klieme, licensed under GPLv3 or any later version.
+
+    changeInput
+    Changes input language
+
+    author:   Stefan Klieme (based on an idea by Craig Williams)
+    created:  2009-11-05
+
+    This program is free software: you can redistribute it and/or modify
+    it under the terms of the GNU General Public License as published by
+    the Free Software Foundation, either version 3 of the License, or
+    (at your option) any later version.
+
+    This program is distributed in the hope that it will be useful,
+    but WITHOUT ANY WARRANTY; without even the implied warranty of
+    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+    GNU General Public License for more details.
+
+    You should have received a copy of the GNU General Public License
+    along with this program.  If not, see <http://www.gnu.org/licenses/>.
