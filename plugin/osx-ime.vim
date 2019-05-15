@@ -34,13 +34,13 @@ if !exists('g:osxime_auto_detect')
     let g:osxime_auto_detect = 1
 endif
 
-if !exists('g:osxime_changeInput_dir')
-    let g:osxime_changeInput_dir = expand('<sfile>:p:h:h') . '/bin'
+if !exists('g:osxime_binary_dir')
+    let g:osxime_binary_dir = expand('<sfile>:p:h:h')
 endif
-let s:osxime_changeInput_path = g:osxime_changeInput_dir . "/changeInput"
+let s:osxime_binary = g:osxime_binary_dir . "/input-method"
 
-if findfile('changeInput', g:osxime_changeInput_dir) == ""
-    echo 'vim-osxime: ' . s:osxime_changeInput_path . ' is not found'
+if findfile('input-method', g:osxime_binary_dir) == ""
+    echo 'vim-osxime: ' . s:osxime_binary . ' is not found'
     echo 'vim-osxime: Forgotten to run make?'
     finish
 endif
@@ -63,7 +63,7 @@ function s:switch_cjk_ime(cjk_mode)
 endfunction
 
 function s:switch_ime(ime)
-    execute "silent !" . s:osxime_changeInput_path . " '" . a:ime . "' > /dev/null"
+    execute "silent !" . s:osxime_binary . " '" . a:ime . "' > /dev/null"
 endfunction
 
 function s:press_shift()
