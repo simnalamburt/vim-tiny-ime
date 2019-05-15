@@ -6,7 +6,10 @@ int main() {
     // Read ARGV[1]
     //
     NSArray<NSString*> *argv = [[NSProcessInfo processInfo] arguments];
-    if ([argv count] != 2) { return 1; }
+    if ([argv count] != 2) {
+      fprintf(stderr, "usage: set-ime <name>\n");
+      return 1;
+    }
     NSString *desired_ime_name = argv[1];
 
     //

@@ -4,7 +4,10 @@ import Carbon
 // Read ARGV[1]
 //
 let argv = CommandLine.arguments
-if argv.count != 2 { exit(1) }
+if argv.count != 2 {
+  print("usage: set-ime <name>");
+  exit(1)
+}
 let desired_ime_name = argv[1]
 
 //
