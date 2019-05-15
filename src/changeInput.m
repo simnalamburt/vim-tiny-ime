@@ -25,18 +25,15 @@
 int main(int argc, const char* __attribute__((unused)) argv[]) {
   NSAutoreleasePool* pool = [[NSAutoreleasePool alloc] init];
 
-  NSArray* args = [[NSProcessInfo processInfo] arguments];
-  TISInputSourceRef current = TISCopyCurrentKeyboardInputSource();
-  NSString* currentName = TISGetInputSourceProperty(current, kTISPropertyLocalizedName);
   if (argc == 1) {
+    TISInputSourceRef current = TISCopyCurrentKeyboardInputSource();
+    NSString* currentName = TISGetInputSourceProperty(current, kTISPropertyLocalizedName);
     printf("%s\n", [currentName UTF8String]);
+    CFRelease(current);
   } else {
-    NSString *chosenInput;
     NSArray* inputArray = (NSArray*)TISCreateInputSourceList(NULL, false);
     NSMutableDictionary* availableLanguages = [NSMutableDictionary dictionaryWithCapacity:[inputArray count]];
-    NSUInteger i;
-    TISInputSourceRef chosen;
-    for (i = 0; i < [inputArray count]; ++i) {
+    for (NSUInteger i = 0; i < [inputArray count]; ++i) {
       const void *name = TISGetInputSourceProperty(
           (TISInputSourceRef)[inputArray objectAtIndex:i],
           kTISPropertyLocalizedName);
@@ -45,8 +42,8 @@ int main(int argc, const char* __attribute__((unused)) argv[]) {
     }
     [inputArray release];
 
-    chosenInput = [args objectAtIndex:1];
-    chosen = (TISInputSourceRef)[availableLanguages objectForKey:chosenInput];
+    NSString *chosenInput = [[[NSProcessInfo processInfo] arguments] objectAtIndex:1];
+    TISInputSourceRef chosen = (TISInputSourceRef)[availableLanguages objectForKey:chosenInput];
     if (chosen) {
       OSStatus err = TISSelectInputSource(chosen);
       if (err) {
@@ -58,6 +55,6 @@ int main(int argc, const char* __attribute__((unused)) argv[]) {
       printf("%s not available\n", [chosenInput UTF8String]);
     }
   }
-  CFRelease(current);
+
   [pool release];
 }
