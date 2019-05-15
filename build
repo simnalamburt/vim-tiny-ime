@@ -1,7 +1,11 @@
 #!/bin/bash
 set -euo pipefail; IFS=$'\n\t'
 
-## TODO: swiftc가 설치되어있는지 체크하고 없을경우 아래 문장으로 fallback 해야함
-# cp set-ime.py set-ime
-
-swiftc -O set-ime.swift
+# Check if swiftc is available
+if xcode-select -p 1>/dev/null 2>/dev/null; then
+  # Compile
+  swiftc -O set-ime.swift
+else
+  # Fallback to python2 version
+  cp set-ime.py set-ime
+fi
