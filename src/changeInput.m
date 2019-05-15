@@ -24,12 +24,12 @@
 #import <Foundation/Foundation.h>
 #import <Carbon/Carbon.h>
 
-int main(int argc, const char* argv[]) {
+int main(int argc, const char* __attribute__((unused)) argv[]) {
   NSAutoreleasePool* pool = [[NSAutoreleasePool alloc] init];
 
   NSArray* args = [[NSProcessInfo processInfo] arguments];
   TISInputSourceRef current = TISCopyCurrentKeyboardInputSource();
-  NSString* currentName = (NSString *)TISGetInputSourceProperty(current, kTISPropertyLocalizedName);
+  NSString* currentName = TISGetInputSourceProperty(current, kTISPropertyLocalizedName);
   if (argc == 1) {
     printf("%s\n", [currentName UTF8String]);
   } else {
@@ -39,7 +39,11 @@ int main(int argc, const char* argv[]) {
     NSUInteger i;
     TISInputSourceRef chosen, languageRef1, languageRef2;
     for (i = 0; i < [inputArray count]; ++i) {
-      [availableLanguages setObject:[inputArray objectAtIndex:i] forKey:TISGetInputSourceProperty((TISInputSourceRef)[inputArray objectAtIndex:i], kTISPropertyLocalizedName)];
+      const void *name = TISGetInputSourceProperty(
+          (TISInputSourceRef)[inputArray objectAtIndex:i],
+          kTISPropertyLocalizedName);
+
+      [availableLanguages setObject:[inputArray objectAtIndex:i] forKey:name];
     }
     [inputArray release];
 
@@ -72,5 +76,4 @@ int main(int argc, const char* argv[]) {
   }
   CFRelease(current);
   [pool release];
-  return 0;
 }
