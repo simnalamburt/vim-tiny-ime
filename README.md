@@ -1,6 +1,6 @@
 vim-tiny-ime
 ========
-Tiny automatic IME switcher for macOS. Switch English IME whenever vim switchs
+Tiny automatic IME switcher for macOS. Switch to English IME whenever vim switchs
 to normal mode.
 
 ```vim
