@@ -4,15 +4,22 @@ if exists('g:loaded_tiny_ime')
 endif
 let g:loaded_tiny_ime = 1
 
+if !exists('g:tiny_ime_default')
+  let g:tiny_ime_default = 'ABC'
+endif
+
 " Verify that the build is complete
-let tiny_ime_dir = expand('<sfile>:p:h:h')
-if findfile('set-ime', tiny_ime_dir) == ""
+let s:tiny_ime_dir = expand('<sfile>:p:h:h')
+if !executable(s:tiny_ime_dir.'/set-ime')
   echo 'vim-tiny-ime: You have to run the following command to complete install of vim-tiny-ime.'
   echo ' '
-  echo '    $ '.tiny_ime_dir.'/build'
+  echo '    $ '.s:tiny_ime_dir.'/build'
   echo ' '
   finish
 endif
 
 " Register 'set-ime' to the autocommands
-autocmd InsertLeave * silent! execute "!".tiny_ime_dir."/set-ime ABC"
+augroup tiny_ime
+  autocmd!
+  autocmd InsertLeave * silent! execute '!'.s:tiny_ime_dir.'/set-ime '.g:tiny_ime_default
+augroup END

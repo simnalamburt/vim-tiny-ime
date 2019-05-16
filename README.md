@@ -8,6 +8,16 @@ to normal mode.
 Plug 'simnalamburt/vim-tiny-ime', { 'do' : './build' }
 ```
 
+## Options
+
+If you want to change the default IME, set `g:tiny_ime_default`.
+
+```vim
+let g:tiny_ime_default = 'Colemak'
+```
+
+The default value of `g:tiny_ime_default` is `'ABC'`.
+
 <br>
 
 --------
