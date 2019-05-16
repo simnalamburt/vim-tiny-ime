@@ -15,4 +15,7 @@ if !executable(s:tiny_ime_dir.'/set-ime')
 endif
 
 " Register 'set-ime' to the autocommands
-autocmd InsertLeave * silent! execute '!'.s:tiny_ime_dir.'/set-ime ABC'
+augroup tiny_ime
+  autocmd!
+  autocmd InsertLeave * silent! execute '!'.s:tiny_ime_dir.'/set-ime ABC'
+augroup END
