@@ -4,11 +4,15 @@ Tiny automatic IME switcher for macOS. Switch to English IME whenever vim
 switchs to normal mode.
 
 ```vim
-" ~/.vimrc
-Plug 'simnalamburt/vim-tiny-ime', { 'do' : './build' }
+Plug 'simnalamburt/vim-tiny-ime'
 ```
 
-## Options
+vim-tiny-ime is quick and lightweight to run and install, as it uses
+[macos-input-source] 0.1.4, which provides a small universal binary.
+
+[macos-input-source]: https://github.com/simnalamburt/macos-input-source
+
+### Options
 
 If you want to change the default IME, set `g:tiny_ime_default`.
 
