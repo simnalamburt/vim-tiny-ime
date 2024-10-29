@@ -1,7 +1,7 @@
 vim-tiny-ime
 ========
-Tiny automatic IME switcher for macOS. Switch to English IME whenever vim switchs
-to normal mode.
+Tiny automatic IME switcher for macOS. Switch to English IME whenever vim
+switchs to normal mode.
 
 ```vim
 " ~/.vimrc
@@ -18,7 +18,7 @@ let g:tiny_ime_default = 'Colemak'
 
 The default value of `g:tiny_ime_default` is `'ABC'`.
 
-<br>
+&nbsp;
 
 --------
 
